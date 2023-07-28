@@ -1,6 +1,6 @@
 import React from "react";
 import PersonItemExternalLinks from "./PersonItemExternalLinks";
-import PersonTagItem from "./PersonTagItem";
+import TagItem from "../../../../../components/general/TagItem";
 
 import bezos from "../../../../../assets/bezos.png";
 
@@ -29,7 +29,7 @@ export default function PersonItemHeader(props) {
             </section>
             <footer>
               {personTypes.map((personType) => (
-                <PersonTagItem
+                <TagItem
                   key={personType.id}
                   name={personType.name}
                   backgroundColor={personType.backgroundColor}

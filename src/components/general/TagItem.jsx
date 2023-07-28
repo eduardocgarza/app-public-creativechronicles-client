@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PersonTagItem(props) {
+export default function TagItem(props) {
   const { name, backgroundColor, textColor } = props;
   return (
     <span
