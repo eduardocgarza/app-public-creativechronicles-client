@@ -1,7 +1,5 @@
-import React from "react"
+import React from "react";
 import { Link } from "react-router-dom";
-
-import airbnbLogo from "../../assets/airbnbLogo.png";
 
 export default function FeaturedSection(props) {
   const { sectionTitle, sectionItems, baseRoute } = props;
@@ -14,21 +12,26 @@ export default function FeaturedSection(props) {
         </Link>
       </header>
       <section className="flex flex-wrap">
-        {sectionItems.map((entityItem) => {
-          const route = `${baseRoute}/${entityItem.username}`;
-          return (
-            <Link
-              to={route}
-              id={entityItem.id}
-              className="m-2 flex flex-col items-center justify-center"
-            >
-              <div className="w-[75px] h-[75px] rounded-full overflow-hidden mb-2">
-                <img src={airbnbLogo} alt="" className="block" />
-              </div>
-              <h3 className="text-xs opacity-[75%]">{entityItem.name}</h3>
-            </Link>
-          );
-        })}
+        {sectionItems &&
+          sectionItems.map((entityItem) => {
+            const route = `${baseRoute}/${entityItem.username}`;
+            return (
+              <Link
+                to={route}
+                id={entityItem.id}
+                className="m-2 flex flex-col items-center justify-center"
+              >
+                <div className="w-[75px] h-[75px] rounded-full overflow-hidden mb-2">
+                  <img
+                    src={entityItem.profilePictureURL}
+                    alt={entityItem.name}
+                    className="block object-cover h-full w-full"
+                  />
+                </div>
+                <h3 className="text-xs opacity-[75%]">{entityItem.name}</h3>
+              </Link>
+            );
+          })}
       </section>
     </section>
   );

@@ -3,9 +3,11 @@ import { fakeVideos } from "../../../../constants/fakeVideos";
 import VideoItem from "./VideoItem";
 
 export default function PersonItemVideos(props) {
-  const { mainMode } = props;
+  const { mainMode, personResource } = props;
   if (mainMode) return null;
-  
+
+  const { videos } = personResource;
+
   return (
     <section className="bg-white p-10 rounded-[30px] mb-6 shadow-md blur-2 text-opacity-15 spread-0">
       <header className="mb-4">
@@ -19,21 +21,19 @@ export default function PersonItemVideos(props) {
         ))}
       </nav>
       <section>
-        {["2023", "2019", "2018", "2017", "2016", "2015", "2014"].map(
-          (yearItem) => (
-            <section className="mb-6">
-              <header className="mb-4">
-                <h2 className="font-bold text-lg opacity-50">{yearItem}</h2>
-              </header>
-              <section>
-                {/* Video Item */}
-                {fakeVideos.map((video) => (
-                  <VideoItem {...video} />
-                ))}
-              </section>
+        {[2023].map((yearItem) => (
+          <section className="mb-6">
+            <header className="mb-4">
+              <h2 className="font-bold text-lg opacity-50">{yearItem}</h2>
+            </header>
+            <section>
+              {/* Video Item */}
+              {videos.map((videoResource) => (
+                <VideoItem videoResource={videoResource} />
+              ))}
             </section>
-          )
-        )}
+          </section>
+        ))}
       </section>
     </section>
   );

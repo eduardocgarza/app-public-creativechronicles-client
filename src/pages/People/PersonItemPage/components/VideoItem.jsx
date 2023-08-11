@@ -1,76 +1,104 @@
 import React from "react";
-import videoThumbnail from "../../../../assets/videoThumbnail.png";
 import numberToShorthand from "../../../../helpers/numberToShorthand";
 
 export default function VideoItem(props) {
+  const { videoResource } = props;
   const {
-    thumbnailURL,
-    videoURL,
-    videoTitle,
-    videoDescription,
-    videoViews,
-    videoLikes,
-    videoComments,
-    eventDate,
-    publishedDate,
-    channelThumbnailURL,
-    channelName,
-    channelURL,
-    channelSubscribers,
-  } = props;
+    videoID,
+    youtubeVideoID,
+    youtubeVideoURL,
+    youtubeVideoTitle,
+    youtubeVideoViews,
+    youtubeVideoLikes,
+    youtubeVideoComments,
+    youtubeVideoDuration,
+    youtubeVideoPublishedDate,
+    youtubeVideoThumbnailSmallURL,
+    youtubeVideoThumbnailMediumURL,
+    youtubeVideoThumbnailLargeURL,
+    appVideoThumbnailSmallURL,
+    appVideoThumbnailMediumURL,
+    appVideoThumbnailLargeURL,
+    dateEvent,
+    dateLastUpdated: dateVideoLastUpdated,
+  } = videoResource.video;
+
+  const {
+    channelID,
+    youtubeChannelID,
+    youtubeChannelURL,
+    youtubeChannelName,
+    youtubeChannelSubscribers,
+    dateLastUpdated: dateChannelLastUpdated,
+    youtubeChannelThumbnailSmallURL,
+    youtubeChannelThumbnailMediumURL,
+    youtubeChannelThumbnailLargeURL,
+    appChannelThumbnailSmallURL,
+    appChannelThumbnailMediumURL,
+    appChannelThumbnailLargeURL,
+  } = videoResource.channel;
+
+  console.log("videoResource: ", videoResource);
 
   /**
    * @Constants
    */
   const formattedChannelSubscribers = `${numberToShorthand(
-    channelSubscribers
+    youtubeChannelSubscribers
   )} subscribers`;
 
-  const formattedVideoViews = `${numberToShorthand(videoViews)} views`;
-  const formattedVideoLikes = `${numberToShorthand(videoLikes)} likes`;
-  const formattedVideoComments = `${numberToShorthand(videoComments)} comments`;
+  const formattedVideoViews = `${numberToShorthand(youtubeVideoViews)} views`;
+  const formattedVideoLikes = `${numberToShorthand(youtubeVideoLikes)} likes`;
+  const formattedVideoComments = `${numberToShorthand(
+    youtubeVideoComments
+  )} comments`;
 
   return (
     <section className="flex mb-4">
-      <a className="block" href={videoURL} rel="noreferrer" target="_blank">
+      <a
+        className="block"
+        href={youtubeVideoURL}
+        rel="noreferrer"
+        target="_blank"
+      >
         <img
           className="block rounded-3xl w-[250px]"
           // src={thumbnailURL}
-          src={videoThumbnail}
-          alt={videoTitle}
+          src={youtubeVideoThumbnailMediumURL}
+          alt={youtubeVideoTitle}
         />
       </a>
       <section className="py-2 px-4 flex-1">
         <a
           className="block text-xl font-medium mb-4"
-          href={videoURL}
+          href={youtubeVideoURL}
           rel="noreferrer"
           target="_blank"
         >
-          {videoTitle}
+          {youtubeVideoTitle}
         </a>
         <div className="flex items-center mb-4">
           <a
             className="block w-[50px] h-[50px] overflow-hidden rounded-full"
-            href={channelURL}
+            href={youtubeChannelURL}
             rel="noreferrer"
             target="_blank"
           >
             <img
               className="block object-cover w-full h-full"
               // src={channelThumbnailURL}
-              src={videoThumbnail}
-              alt={channelName}
+              src={youtubeChannelThumbnailSmallURL}
+              alt={youtubeChannelName}
             />
           </a>
           <div className="flex-1 ml-2">
             <a
               className="block text-sm font-medium mb-1"
-              href={channelURL}
+              href={youtubeChannelURL}
               rel="noreferrer"
               target="_blank"
             >
-              {channelName}
+              {youtubeChannelName}
             </a>
             <p className="text-xs opacity-50">{formattedChannelSubscribers}</p>
           </div>
@@ -79,11 +107,11 @@ export default function VideoItem(props) {
           <div className="flex mb-1">
             <div className="flex mr-2">
               <h3 className="font-medium mr-2">Event date</h3>
-              <p className="opacity-50">{publishedDate}</p>
+              <p className="opacity-50">{youtubeVideoPublishedDate}</p>
             </div>
             <div className="flex">
               <h3 className="font-medium mr-2">Event date</h3>
-              <p className="opacity-50">{eventDate}</p>
+              <p className="opacity-50">{dateEvent}</p>
             </div>
           </div>
           <div className="flex">
