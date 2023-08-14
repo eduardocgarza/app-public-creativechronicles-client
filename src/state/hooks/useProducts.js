@@ -27,7 +27,16 @@ export default function useProducts() {
   async function fetchProducts() {
     try {
       const response = await publicRouter.get(getAllProductsEndpoint);
-      setProductObjects(response.data);
+      const products = response.data;
+      const activeProducts = products.filter(
+        (productResource) =>
+          !productResource.product.isArchived &&
+          productResource.product.isPublished
+      );
+      const sortedProducts = activeProducts.sort((a, b) =>
+        a.product.productName > b.product.productName ? 1 : -1
+      );
+      setProductObjects(sortedProducts);
     } catch (error) {
       Logger.error(error);
     }

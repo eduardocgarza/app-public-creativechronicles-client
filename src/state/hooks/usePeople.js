@@ -27,7 +27,15 @@ export default function usePeople() {
   async function fetchPeople() {
     try {
       const response = await publicRouter.get(getAllPeopleEndpoint);
-      setPersonObjects(response.data);
+      const people = response.data;
+      const activePeople = people.filter(
+        (personResource) =>
+          !personResource.person.isArchived && personResource.person.isPublished
+      );
+      const sortedPeople = activePeople.sort((a, b) =>
+        a.person.firstName > b.person.firstName ? 1 : -1
+      );
+      setPersonObjects(sortedPeople);
     } catch (error) {
       Logger.error(error);
     }

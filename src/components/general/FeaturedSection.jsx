@@ -19,16 +19,22 @@ export default function FeaturedSection(props) {
               <Link
                 to={route}
                 id={entityItem.id}
-                className="m-2 flex flex-col items-center justify-center"
+                className="flex flex-col items-center justify-center w-[100px] max-w-[100px] h-[120px] max-h-[120px] mb-6 text-center"
               >
-                <div className="w-[75px] h-[75px] rounded-full overflow-hidden mb-2">
-                  <img
-                    src={entityItem.profilePictureURL}
-                    alt={entityItem.name}
-                    className="block object-cover h-full w-full"
-                  />
+                <div className="block w-[75px] min-w-[75px] h-[75px] min-h-[75px] rounded-full overflow-hidden mb-2">
+                  {entityItem.profilePictureURL ? (
+                    <img
+                      src={entityItem.profilePictureURL}
+                      alt={entityItem.name}
+                      className="block object-cover h-full w-full"
+                    />
+                  ) : (
+                    <div className="block h-full w-full bg-[#111]" />
+                  )}
                 </div>
-                <h3 className="text-xs opacity-[75%]">{entityItem.name}</h3>
+                <h3 className="flex-1 text-xs opacity-[75%]">
+                  {entityItem.name}
+                </h3>
               </Link>
             );
           })}

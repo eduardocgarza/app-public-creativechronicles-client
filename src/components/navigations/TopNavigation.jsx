@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import creativeChroniclesLogo from "../../assets/creativeChroniclesLogo.png";
 
 export default function TopNavigation() {
   const navStyle =
     "flex items-center justify-center flex-col py-1 text-gray-600 hover:text-gray-900 text-xs mx-3";
 
   return (
-    <nav className="z-[10] fixed top-0 left-0 min-h-[50px] max-h-[50px] h-[50px] w-full bg-white border-b border-b-gray-300 px-4 py-1">
-      <div className="container mx-auto h-full flex items-center justify-center">
+    <nav className="z-[10] fixed top-0 left-0 min-h-[60px] max-h-[60px] h-[60px] w-full bg-white border-b border-b-gray-300 px-4 py-1">
+      <div className="container mx-auto h-full flex items-center">
         <section className="flex items-center">
           <Link className={navStyle} to="/">
-            <span className="block">Home</span>
+            <img src={creativeChroniclesLogo} alt="Creative Chronicles" className="block w-[35px] h-[35px]" />
           </Link>
           <Link className={navStyle} to="/companies">
             <span className="block">Companies</span>

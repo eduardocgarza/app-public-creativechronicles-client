@@ -27,7 +27,16 @@ export default function useCompanies() {
   async function fetchCompanies() {
     try {
       const response = await publicRouter.get(getAllCompaniesEndpoint);
-      setCompanyObjects(response.data);
+      const companies = response.data;
+      const activeCompanies = companies.filter(
+        (companyResource) =>
+          !companyResource.company.isArchived &&
+          companyResource.company.isPublished
+      );
+      const sortedCompanies = activeCompanies.sort((a, b) =>
+        a.company.companyName > b.company.companyName ? 1 : -1
+      );
+      setCompanyObjects(sortedCompanies);
     } catch (error) {
       Logger.error(error);
     }

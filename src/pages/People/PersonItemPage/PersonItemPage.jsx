@@ -38,7 +38,11 @@ export default function PersonItemPage() {
 
   return (
     <section>
-      <PersonItemNavigation mainMode={mainMode} setMainMode={setMainMode} />
+      <PersonItemNavigation 
+        mainMode={mainMode} 
+        setMainMode={setMainMode} 
+        personResource={personResource}
+      />
       <section className="py-[80px]">
         <div className="container mx-auto">
           <PersonItemHeader personResource={personResource} />
