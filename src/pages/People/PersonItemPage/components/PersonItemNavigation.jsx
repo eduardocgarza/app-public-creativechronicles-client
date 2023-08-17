@@ -11,15 +11,17 @@ export default function PersonItemNavigation(props) {
     profilePictureURL,
   } = personResource.person.person;
 
-  const personName = `${firstName} ${lastName}`;
+  const personName = `${firstName} ${
+    middleName && `${middleName[0]}.`
+  } ${lastName}`;
 
   return (
-    <nav className="bg-white border-b border-b-gray-200 h-[50px] z-[10] fixed left-0 right-0">
-      <div className="container mx-auto h-full flex items-center">
+    <nav className="bg-white border-b border-b-gray-200 h-[60px] z-[10] fixed left-0 right-0 flex items-center justify-center">
+      <div className="container mx-auto h-full flex items-center justify-center md:justify-start">
         <header className="flex mr-4">
           <div className="w-[30px] h-[30px] rounded-full overflow-hidden mr-2">
             <img
-              className="block object-fit w-full h-full"
+              className="block object-cover w-full h-full"
               src={profilePictureURL}
               alt={personName}
             />
@@ -28,16 +30,20 @@ export default function PersonItemNavigation(props) {
         </header>
         <section className="flex items-center">
           <button
-            className={`hover:bg-gray-200 rounded-full px-3 py-1.5 text-xs mr-2 transition duration-500 ease-in-out ${
-              mainMode ? "bg-gray-200 opacity-[85%]" : "bg-gray-100 opacity-50"
+            className={`rounded-full px-3 py-1.5 text-xs mr-2 transition duration-500 ease-in-out ${
+              mainMode
+                ? "bg-blue-600 text-white"
+                : "bg-gray-100 hover:bg-gray-200 text-gray-800"
             }`}
             onClick={() => setMainMode(true)}
           >
-            Main
+            About
           </button>
           <button
-            className={`bg-gray-100 hover:bg-gray-200 rounded-full px-3 py-1.5 text-xs mr-2 transition duration-500 ease-in-out ${
-              !mainMode ? "bg-gray-200 opacity-[85%]" : "bg-gray-100 opacity-50"
+            className={`rounded-full px-3 py-1.5 text-xs mr-2 transition duration-500 ease-in-out ${
+              !mainMode
+                ? "bg-blue-600 text-white"
+                : "bg-gray-100 hover:bg-gray-200 text-gray-800"
             }`}
             onClick={() => setMainMode(false)}
           >

@@ -13,7 +13,7 @@ import youtubeIcon from "../../../../assets/icons/1217140_youtube.png";
 
 export default function CompanyItemExternalLinks() {
   return (
-    <div className="flex items-start">
+    <div className="flex items-start flex-wrap">
       <a
         className="block bg-gray-100 hover:bg-gray-200 transition duration-500 ease-in-out p-3 rounded-full mr-3"
         href="#"

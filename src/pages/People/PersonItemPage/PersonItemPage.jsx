@@ -43,7 +43,7 @@ export default function PersonItemPage() {
         setMainMode={setMainMode} 
         personResource={personResource}
       />
-      <section className="py-[80px]">
+      <section className="py-[80px] px-4">
         <div className="container mx-auto">
           <PersonItemHeader personResource={personResource} />
           <PersonItemCompanies

@@ -5,7 +5,7 @@ export default function CompanyItemProducts(props) {
   const { companyResource } = props;
   const { products } = companyResource;
 
-  console.log("--- products: ", products);
+  if (products.length === 0) return null;
 
   return (
     <section className="bg-white p-10 rounded-[30px] mb-6 shadow-md blur-2 text-opacity-15 spread-0">

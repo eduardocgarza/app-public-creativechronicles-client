@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import FeaturedSection from "../../../components/general/FeaturedSection";
+import FeaturedSection from "../../../components/general/FeaturedSection/FeaturedSection";
 import useAppContext from "../../../state/AppContext";
 
 export default function CompaniesPage() {
@@ -19,7 +19,7 @@ export default function CompaniesPage() {
   }, [companyObjects]);
 
   return (
-    <section className="p-10">
+    <section className="py-10">
       <div className="container mx-auto">
         <FeaturedSection
           sectionTitle="Companies"

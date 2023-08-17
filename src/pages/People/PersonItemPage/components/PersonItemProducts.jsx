@@ -3,9 +3,11 @@ import { headerColumns } from "../helpers/headerColumns";
 import airbnbLogo from "../../../../assets/airbnbLogo.png";
 
 export default function PersonItemProducts(props) {
-  const { mainMode } = props;
-  if(!mainMode) return null;
-  
+  const { mainMode, personResource } = props;
+  const { products } = personResource;
+  if (!mainMode) return null;
+  if (!products || products.length === 0) return null;
+
   return (
     <section className="bg-white p-10 rounded-[30px] mb-6 shadow-md blur-2 text-opacity-15 spread-0">
       <header className="mb-4">
