@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import PersonItemHeader from "./components/PersonItemHeader/PersonItemHeader";
+import { useParams } from "react-router-dom";
+import Logger from "../../../constants/Logger";
 import PersonItemVideos from "./components/PersonItemVideos";
 import PersonItemCompanies from "./components/PersonItemCompanies";
 import PersonItemProducts from "./components/PersonItemProducts";
 import PersonItemNavigation from "./components/PersonItemNavigation";
-import { useParams } from "react-router-dom";
-import { getPersonEndpoint } from "../../../network/routes/peopleRoutes";
+import PersonItemHeader from "./components/PersonItemHeader/PersonItemHeader";
 import { publicRouter } from "../../../network/serverRouter";
-import Logger from "../../../constants/Logger";
+import { getPersonEndpoint } from "../../../network/routes/peopleRoutes";
+import sortPersonCompanies from "./helpers/sortPersonCompanies";
+import sortPersonProducts from "./helpers/sortPersonProducts";
+import sortPersonVideos from "./helpers/sortPersonVideos";
 
 export default function PersonItemPage() {
   const { personUsername } = useParams();
@@ -18,7 +21,17 @@ export default function PersonItemPage() {
     try {
       const route = getPersonEndpoint(personUsername);
       const response = await publicRouter.get(route);
-      setPersonResource(response.data.resource);
+      const personResource = response.data.resource;
+      const sortedCompanies = sortPersonCompanies(personResource.companies);
+      const sortedProducts = sortPersonProducts(personResource.products);
+      const sortedVideos = sortPersonVideos(personResource.videos);
+
+      setPersonResource({
+        ...personResource,
+        videos: sortedVideos,
+        companies: sortedCompanies,
+        products: sortedProducts,
+      });
     } catch (error) {
       Logger.error(error);
     }
@@ -30,17 +43,15 @@ export default function PersonItemPage() {
 
   if (!personResource) return null;
 
-  console.log("personResource: ", personResource)
-
   /**
    * @State
    */
 
   return (
     <section>
-      <PersonItemNavigation 
-        mainMode={mainMode} 
-        setMainMode={setMainMode} 
+      <PersonItemNavigation
+        mainMode={mainMode}
+        setMainMode={setMainMode}
         personResource={personResource}
       />
       <section className="py-[80px] px-4">
