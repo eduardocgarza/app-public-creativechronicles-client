@@ -1,14 +1,14 @@
 import React from "react";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 
 export default function LottieAnimation(props) {
   const { animationData, height } = props;
-  const lottieOptions = {
-    loop: true,
-    autoplay: true,
-    animationData,
-  };
   return (
-    <Lottie options={lottieOptions} style={{ height }} />
+    <Lottie
+      animationData={animationData}
+      loop={true}
+      autoplay={true}
+      style={{ height }}
+    />
   );
 }
