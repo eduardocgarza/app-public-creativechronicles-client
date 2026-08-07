@@ -4,8 +4,11 @@ import "./index.css";
 import AppRouter from "./router/AppRouter";
 import { AppContextProvider } from "./state/AppContext";
 import ReactGA from "react-ga4";
+import { GOOGLE_ANALYTICS_MEASUREMENT_ID } from "./constants/appConstants";
 
-ReactGA.initialize("G-RZJ36FD15E");
+if (GOOGLE_ANALYTICS_MEASUREMENT_ID) {
+  ReactGA.initialize(GOOGLE_ANALYTICS_MEASUREMENT_ID);
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

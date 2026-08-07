@@ -1,4 +1,4 @@
-const { BASE_URL } = require("../../constants/appConstants");
+import { BASE_URL } from "../../constants/appConstants";
 
 /**
  * @ProductCategories Endpoints
